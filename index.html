@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickBite | Order Fast. Pick Up Faster.</title>
+    <meta name="description" content="Modern drive-through food ordering. Order fast, customize your way, and pick up faster.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Header & Navigation -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Quick<span>Bite</span></span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#menu" class="nav-link">Menu</a></li>
+                    <li><a href="#deals" class="nav-link">Deals</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+
+                <button class="icon-btn cart-btn" id="cart-toggle-btn" aria-label="Open Shopping Cart">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </button>
+
+                <a href="#menu" class="btn btn-primary start-order-btn">Start Order</a>
+
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Navigation Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge-tag">🚗 Drive-Through Priority</div>
+                <h1 class="hero-title">Your Cravings.<br><span>One Quick Stop.</span></h1>
+                <p class="hero-desc">Freshly prepared favorites, customized your way and hot & ready in your pickup slot when you arrive.</p>
+                <div class="hero-actions">
+                    <a href="#menu" class="btn btn-primary btn-lg">Order Now</a>
+                    <a href="#menu" class="btn btn-secondary btn-lg">View Menu</a>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="hero-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Delicious Juicy Burger and Fries" class="hero-img">
+                    <div class="floating-card flex-card">
+                        <span class="card-emoji">⚡</span>
+                        <div>
+                            <strong>Avg. Ready Time</strong>
+                            <p>10–12 Mins</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Highlights -->
+        <div class="container">
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <span class="hl-icon">⚡</span>
+                    <div>
+                        <h4>Fast Pickup</h4>
+                        <p>Zero wait time</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span class="hl-icon">🍔</span>
+                    <div>
+                        <h4>Freshly Prepared</h4>
+                        <p>Made to order</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span class="hl-icon">🥤</span>
+                    <div>
+                        <h4>Customizable</h4>
+                        <p>Have it your way</p>
+                    </div>
+                </div>
+                <div class="highlight-item">
+                    <span class="hl-icon">🚗</span>
+                    <div>
+                        <h4>Drive-Through Ready</h4>
+                        <p>Stay in your car</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section section" id="menu">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Explore Our Menu</h2>
+                <p class="section-subtitle">Select from our freshly prepared delicious options</p>
+            </div>
+
+            <!-- Search & Controls -->
+            <div class="menu-controls">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="menu-search" placeholder="Search burgers, pizzas, fries, drinks..." aria-label="Search food items">
+                </div>
+                <div class="category-filters" id="category-filters">
+                    <button class="filter-btn active" data-category="all">All Items</button>
+                    <button class="filter-btn" data-category="burgers">Burgers</button>
+                    <button class="filter-btn" data-category="combos">Combos</button>
+                    <button class="filter-btn" data-category="pizza">Pizza</button>
+                    <button class="filter-btn" data-category="sides">Sides</button>
+                    <button class="filter-btn" data-category="drinks">Drinks</button>
+                    <button class="filter-btn" data-category="desserts">Desserts</button>
+                </div>
+            </div>
+
+            <!-- Food Grid -->
+            <div class="food-grid" id="food-grid">
+                <!-- Dynamically populated by JS -->
+            </div>
+            
+            <div class="no-results hidden" id="no-results">
+                <span class="no-results-icon">🍔</span>
+                <h3>No items found</h3>
+                <p>Try searching for something else or clear your category filter.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section class="deals-section section" id="deals">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Exclusive Deals & Offers</h2>
+                <p class="section-subtitle">Claim coupon codes directly and save big on your order</p>
+            </div>
+            <div class="deals-grid">
+                <div class="deal-card">
+                    <div class="deal-tag">20% OFF</div>
+                    <h3>Burger Tuesday</h3>
+                    <p>Get 20% flat discount on all premium burgers.</p>
+                    <div class="deal-footer">
+                        <code>BURGER20</code>
+                        <button class="btn btn-outline btn-sm claim-btn" data-code="BURGER20">Claim Offer</button>
+                    </div>
+                </div>
+                <div class="deal-card highlight">
+                    <div class="deal-tag">SAVE ₹150</div>
+                    <h3>Family Feast</h3>
+                    <p>Flat ₹150 discount on orders above ₹600.</p>
+                    <div class="deal-footer">
+                        <code>FAMILY150</code>
+                        <button class="btn btn-primary btn-sm claim-btn" data-code="FAMILY150">Claim Offer</button>
+                    </div>
+                </div>
+                <div class="deal-card">
+                    <div class="deal-tag">FLAT ₹50 OFF</div>
+                    <h3>Welcome Offer</h3>
+                    <p>Enjoy ₹50 off on your very first QuickBite order.</p>
+                    <div class="deal-footer">
+                        <code>WELCOME50</code>
+                        <button class="btn btn-outline btn-sm claim-btn" data-code="WELCOME50">Claim Offer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Flow Drawer / Modal -->
+    <div class="cart-drawer-overlay" id="cart-overlay"></div>
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart and Checkout">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-btn" id="close-cart-btn" aria-label="Close cart">&times;</button>
+        </div>
+
+        <!-- Checkout Steps Progress Indicator -->
+        <div class="checkout-steps">
+            <div class="step-item active" id="step-indicator-1">
+                <div class="step-num">1</div>
+                <span>Cart</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="step-indicator-2">
+                <div class="step-num">2</div>
+                <span>Pickup</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="step-indicator-3">
+                <div class="step-num">3</div>
+                <span>Review</span>
+            </div>
+        </div>
+
+        <div class="cart-body">
+            <!-- STEP 1: CART ITEMS -->
+            <div class="checkout-step-content active" id="checkout-step-1">
+                <div class="cart-items-list" id="cart-items-list">
+                    <!-- Dynamic cart items list -->
+                </div>
+
+                <div class="coupon-box">
+                    <input type="text" id="coupon-input" placeholder="Enter Promo Code (e.g. WELCOME50)" aria-label="Coupon code">
+                    <button class="btn btn-secondary" id="apply-coupon-btn">Apply</button>
+                </div>
+                <div id="coupon-message" class="coupon-msg"></div>
+
+                <div class="cart-summary-calculations">
+                    <div class="calc-row">
+                        <span>Subtotal</span>
+                        <span id="summary-subtotal">₹0</span>
+                    </div>
+                    <div class="calc-row">
+                        <span>Taxes (5%)</span>
+                        <span id="summary-tax">₹0</span>
+                    </div>
+                    <div class="calc-row">
+                        <span>Packaging Fee</span>
+                        <span id="summary-packaging">₹0</span>
+                    </div>
+                    <div class="calc-row discount-row hidden" id="discount-row">
+                        <span>Discount</span>
+                        <span id="summary-discount">-₹0</span>
+                    </div>
+                    <hr>
+                    <div class="calc-row total-row">
+                        <span>Total Payable</span>
+                        <span id="summary-total">₹0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2: PICKUP DETAILS -->
+            <div class="checkout-step-content" id="checkout-step-2">
+                <form id="pickup-form">
+                    <div class="form-group">
+                        <label>Pickup Method</label>
+                        <div class="method-selector">
+                            <label class="radio-card active">
+                                <input type="radio" name="pickupMethod" value="Drive-Through" checked>
+                                <span>🚗 Drive-Through</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="pickupMethod" value="Counter Pickup">
+                                <span>🏪 Counter Pickup</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cust-name">Full Name *</label>
+                        <input type="text" id="cust-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cust-phone">Mobile Number *</label>
+                        <input type="tel" id="cust-phone" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                    </div>
+
+                    <div id="vehicle-fields">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="vehicle-no">Vehicle Number *</label>
+                                <input type="text" id="vehicle-no" class="form-control" placeholder="e.g. TS09AB1234">
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicle-type">Vehicle Type</label>
+                                <select id="vehicle-type" class="form-control">
+                                    <option value="Hatchback / Sedan">Sedan / Hatchback</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="Two-Wheeler">Two-Wheeler</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Pickup Slot *</label>
+                        <div class="slots-grid" id="slots-grid">
+                            <!-- Dynamic pickup slots -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- STEP 3: ORDER REVIEW -->
+            <div class="checkout-step-content" id="checkout-step-3">
+                <div class="review-box">
+                    <h4>Order Summary</h4>
+                    <div id="review-items-list" class="review-items"></div>
+                    <hr>
+                    <div class="calc-row">
+                        <span>Grand Total</span>
+                        <strong id="review-total-price">₹0</strong>
+                    </div>
+                </div>
+
+                <div class="review-box">
+                    <h4>Pickup Details</h4>
+                    <p><strong>Method:</strong> <span id="rev-method">Drive-Through</span></p>
+                    <p><strong>Slot:</strong> <span id="rev-slot">Today, 12:30 PM</span></p>
+                    <p><strong>Customer:</strong> <span id="rev-name">-</span> (<span id="rev-phone">-</span>)</p>
+                    <p id="rev-vehicle-container"><strong>Vehicle:</strong> <span id="rev-vehicle">-</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <button class="btn btn-secondary hidden" id="prev-step-btn">Back</button>
+            <button class="btn btn-primary btn-block" id="next-step-btn">Proceed to Pickup Details</button>
+            <button class="btn btn-primary btn-block hidden" id="place-order-btn">Confirm & Place Order</button>
+        </div>
+    </aside>
+
+    <!-- Food Customization Modal -->
+    <div class="modal-overlay" id="custom-modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 id="custom-food-title">Customize Item</h3>
+                    <p id="custom-food-base-price" class="text-muted">Base Price: ₹0</p>
+                </div>
+                <button class="close-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <div class="modal-body" id="custom-modal-body">
+                <!-- Customization Options Rendered via JS -->
+            </div>
+            <div class="modal-footer">
+                <div class="modal-total">
+                    <span>Total Price:</span>
+                    <strong id="custom-calculated-price">₹0</strong>
+                </div>
+                <button class="btn btn-primary" id="add-custom-item-btn">Add Customized Item</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Progress / Tracking Modal -->
+    <div class="modal-overlay" id="tracking-modal-overlay">
+        <div class="modal-content tracking-modal">
+            <div class="modal-header text-center">
+                <div>
+                    <span class="success-badge">🎉 Order Confirmed!</span>
+                    <h3 id="track-order-id">Order #QB10248</h3>
+                    <p class="text-muted" id="track-estimated-time">Ready in approx. 12 minutes</p>
+                </div>
+                <button class="close-btn" id="close-tracking-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Live Progress Tracking Component -->
+                <div class="order-progress-wrapper">
+                    <div class="progress-track-bar">
+                        <div class="progress-fill" id="progress-fill-line"></div>
+                    </div>
+                    <div class="progress-step active" id="p-step-1">
+                        <div class="step-icon">✓</div>
+                        <span>Confirmed</span>
+                    </div>
+                    <div class="progress-step" id="p-step-2">
+                        <div class="step-icon">🍳</div>
+                        <span>Preparing</span>
+                    </div>
+                    <div class="progress-step" id="p-step-3">
+                        <div class="step-icon">🚗</div>
+                        <span>Ready</span>
+                    </div>
+                    <div class="progress-step" id="p-step-4">
+                        <div class="step-icon">🤝</div>
+                        <span>Picked Up</span>
+                    </div>
+                </div>
+
+                <div class="tracking-summary-details" id="tracking-summary-details">
+                    <!-- Tracking order info -->
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <button class="btn btn-secondary btn-block" id="finish-tracking-btn">Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about-section section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="badge-tag">Our Story</div>
+                    <h2 class="section-title">Made Fresh. Made Fast.</h2>
+                    <p>At QuickBite, we combine fresh ingredients, bold flavors, and a seamless drive-through experience so you can enjoy your favorite hot meals without waiting in line.</p>
+                    <div class="about-features">
+                        <div class="af-item">
+                            <span class="af-icon">🥗</span>
+                            <div>
+                                <h4>Fresh Ingredients</h4>
+                                <p>Sourced daily for authentic taste and crisp quality.</p>
+                            </div>
+                        </div>
+                        <div class="af-item">
+                            <span class="af-icon">⚡</span>
+                            <div>
+                                <h4>Fast Service</h4>
+                                <p>Optimized drive-through workflows for instant handovers.</p>
+                            </div>
+                        </div>
+                        <div class="af-item">
+                            <span class="af-icon">🚗</span>
+                            <div>
+                                <h4>Easy Pickup</h4>
+                                <p>Stay comfortable in your vehicle while we bring it out.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80" alt="QuickBite Counter and Kitchen" class="rounded-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section section" id="contact">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Have questions or feedback? We’d love to hear from you!</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-card">
+                        <span class="info-icon">📍</span>
+                        <div>
+                            <h4>Restaurant Location</h4>
+                            <p>QuickBite Drive-Thru Hub, HiTech City Rd, Hyderabad, TS</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">📞</span>
+                        <div>
+                            <h4>Phone Number</h4>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">✉️</span>
+                        <div>
+                            <h4>Email</h4>
+                            <p>support@quickbite.com</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-icon">⏰</span>
+                        <div>
+                            <h4>Opening Hours</h4>
+                            <p>Monday – Sunday: 10:00 AM – 11:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name">Name</label>
+                        <input type="text" id="contact-name" class="form-control" required placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" class="form-control" required placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-msg">Message</label>
+                        <textarea id="contact-msg" class="form-control" rows="4" required placeholder="How can we help?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">Quick<span>Bite</span></span>
+                </a>
+                <p>Order Fast. Pick Up Faster.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#deals">Deals</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="Facebook">👍</a>
+                    <a href="#" aria-label="X Twitter">🐦</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 QuickBite. All Rights Reserved. Designed for Drive-Through Efficiency.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
